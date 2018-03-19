@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+
+      <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add list</button>
+
+
+    </div>
+  </div>
+  <div class="row">
+    <hr>
+  </div>
+  <div class="d-flex flex-row" *ngFor="let column of this.data.columns" [dragula]='"bag-two"' [dragulaModel]='data.columns'>
+    <!-- <app-column class="columns" [column]="column"></app-column> -->
+    <app-column [column]="column"></app-column>
+  </div>
+</div>
+
+
+<p *ngIf="this.dataLoaded">
+  {{this.userData[0].id}}
+</p>
