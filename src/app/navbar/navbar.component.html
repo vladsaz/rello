@@ -1,6 +1,40 @@
 <nav class="navbar navbar-light bg-light">
   <form class="form-inline">
-    <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add list</button>
-    <button class="btn btn-sm btn-outline-secondary" type="button">Login</button>
+    <button class="btn btn-lg btn-outline-primary">Add list</button>
+    <button class="btn btn-sm btn-outline-secondary" (click)="open(content)" type="button">Login</button>
   </form>
 </nav>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div *ngIf="isRegistered">
+      <div class="modal-header">
+          <h4 class="modal-title">Logged</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+        </div>
+  </div>
+  
+  <div *ngIf="!isRegistered">
+      <div class="modal-header">
+          <h4 class="modal-title">Logged</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+        </div>
+  </div>
+</ng-template>
+
+  
