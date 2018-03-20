@@ -1,4 +1,4 @@
-<div class="d-flex flex-row container" [dragula]='"bag-one"' [dragulaModel]='column.tasks'>
+<!-- <div class="d-flex flex-row container" [dragula]='"bag-one"' [dragulaModel]='column.tasks'>
   <div class="column justify-content-around">
     <div class="column-title row justify-content-around">
       <p>{{column.name}}</p>
@@ -9,5 +9,16 @@
       </div>
     </div>
   </div>
-
+</div> -->
+<div class="d-flex flex-row container" dropDirective (dropEvent)="addDropItem($event)" [dropHighlight]="'highlight'">
+  <div class="column justify-content-around">
+    <div class="column-title row justify-content-around">
+      <p>{{column.name}}</p>
+    </div>
+    <div>
+      <div class="row" *ngFor="let task of column.tasks" [dragDirective]='task'>
+        <app-task [task]="task"></app-task>
+      </div>
+    </div>
+  </div>
 </div>

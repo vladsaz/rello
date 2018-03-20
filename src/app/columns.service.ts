@@ -1,17 +1,11 @@
 import { Injectable } from '@angular/core';
-import { DragulaService } from 'ng2-dragula';
 
 @Injectable()
 export class ColumnsService {
 
   private columnsList: object = {};
 
-  constructor(private dragulaService: DragulaService) {
-    dragulaService.drag.subscribe((value) => {
-      // console.log(`drag: ${value}`);
-      console.log(this.columnsList);
-      // this.onDrag(value.slice(1));
-    });
+  constructor() {
    }
 
   getData () {

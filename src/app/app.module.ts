@@ -3,11 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ColumnsService } from './columns.service';
-import { DragulaModule } from 'ng2-dragula';
-import { DragulaService } from 'ng2-dragula';
 import { AuthorizationService } from './authorization.service';
-
-
+import { DragDropDirectiveModule } from 'angular4-drag-drop';
 
 import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
@@ -28,9 +25,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    DragulaModule
+    DragDropDirectiveModule
   ],
-  providers: [ColumnsService, DragulaService, AuthorizationService],
+  providers: [ColumnsService, AuthorizationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ColumnsService } from '../columns.service';
-import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-board',
@@ -19,16 +18,8 @@ export class BoardComponent implements OnInit {
     '1': 'true'
   };
 
-  constructor(private http: HttpClient, private columnsService: ColumnsService, private dragulaService: DragulaService) {
-        // dragulaService.setOptions('bag-one', {});
-        dragulaService.dropModel.subscribe((value) => {
-          this.onDropModel(value);
-        });
+  constructor(private http: HttpClient, private columnsService: ColumnsService) {
   }
-
-  private onDropModel(args) {
-    // Here, this.playlists contains the elements reordered
-}
 
   ngOnInit() {
     this.data = this.columnsService.getData();
