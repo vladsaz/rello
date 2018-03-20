@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ColumnsService } from './columns.service';
 import { AuthorizationService } from './authorization.service';
-import { DragDropDirectiveModule } from 'angular4-drag-drop';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -26,7 +25,6 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    DragDropDirectiveModule,
     FormsModule
   ],
   providers: [ColumnsService, AuthorizationService],

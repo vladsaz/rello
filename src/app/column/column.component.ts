@@ -21,7 +21,4 @@ export class ColumnComponent implements OnInit {
   ngOnInit() {
   }
 
-  private addDropItem(event) {
-    this.itemsDropped.push(event);
-  }
 }
