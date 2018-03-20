@@ -3,3 +3,8 @@
     min-height: 90vh;
     overflow: scroll;
 }
+
+.column-container {
+    overflow: scroll;
+    min-height: 90vh;
+}

@@ -14,6 +14,9 @@ export class NavbarComponent implements OnInit {
   private loginFormData: object = {
     name: ''
   };
+  private registrationFormData: object = {
+    name: ''
+  };
 
   constructor(private auth: AuthorizationService, private modalService: NgbModal) { }
 
@@ -31,7 +34,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.loginFormData);
+    // console.log(this.registrationFormData);
   }
 
 
