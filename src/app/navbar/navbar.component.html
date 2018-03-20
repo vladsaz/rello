@@ -7,34 +7,48 @@
 
 <ng-template #content let-c="close" let-d="dismiss">
   <div *ngIf="isRegistered">
-      <div class="modal-header">
-          <h4 class="modal-title">Logged</h4>
-          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="modal-header">
+      <h4 class="modal-title">Logged</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <div class="row">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="first" required [(ngModel)]="loginFormData.name">
         </div>
-        <div class="modal-body">
-          <p>One fine body&hellip;</p>
+        <div class="row">
+          <button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">Submit</button>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    </div>
   </div>
-  
+
   <div *ngIf="!isRegistered">
-      <div class="modal-header">
-          <h4 class="modal-title">Registration</h4>
-          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>One fine body&hellip;</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-        </div>
+    <div class="modal-header">
+      <h4 class="modal-title">Registration</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+          <div class="row">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="first" required [(ngModel)]="loginFormData.name">
+          </div>
+          <div class="row">
+            <button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">Submit</button>
+          </div>
+        </form>
+      </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    </div>
   </div>
 </ng-template>
-
-  

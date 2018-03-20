@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthorizationService {
 
-  public isRegistered = false;
+  public isRegistered = true;
 
   constructor() { }
 

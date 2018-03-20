@@ -11,6 +11,9 @@ export class NavbarComponent implements OnInit {
 
   private closeResult: string;
   private isRegistered;
+  private loginFormData: object = {
+    name: ''
+  };
 
   constructor(private auth: AuthorizationService, private modalService: NgbModal) { }
 
@@ -25,6 +28,10 @@ export class NavbarComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  onSubmit() {
+    console.log(this.loginFormData);
   }
 
 
