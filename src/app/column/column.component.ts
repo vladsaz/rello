@@ -10,6 +10,7 @@ import { ColumnsService } from '../columns.service';
 export class ColumnComponent implements OnInit {
 @Input() column: Object;
 
+  private inputVal: string;
   private itemsDropped: Array<any> = [];
   private newTask: object = {
     'name': 'new one'
@@ -36,6 +37,11 @@ export class ColumnComponent implements OnInit {
 
  private addTask() {
   this.column.tasks.push(this.newTask);
+ }
+
+ private updateColumnName() {
+   this.column.name = this.inputVal;
+   console.log(this.column.name);
  }
 
 }
