@@ -5,6 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ColumnsService } from './columns.service';
 import { AuthorizationService } from './authorization.service';
 import { FormsModule } from '@angular/forms';
+import { DndModule } from 'ng2-dnd';
 
 import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
@@ -25,7 +26,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    FormsModule
+    FormsModule,
+    DndModule.forRoot()
   ],
   providers: [ColumnsService, AuthorizationService],
   bootstrap: [AppComponent]

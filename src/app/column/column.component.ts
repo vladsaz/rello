@@ -21,4 +21,8 @@ export class ColumnComponent implements OnInit {
   ngOnInit() {
   }
 
+  onMove($event, position: number) {
+    console.log($event);
+}
+
 }

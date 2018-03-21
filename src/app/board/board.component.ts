@@ -34,4 +34,7 @@ export class BoardComponent implements OnInit {
     });
   }
 
+  info($event) {
+    console.log($event);
+  }
 }
