@@ -13,10 +13,12 @@ export class NavbarComponent implements OnInit {
   private closeResult: string;
   private isRegistered;
   private loginFormData: object = {
-    name: ''
+    login: '',
+    password: ''
   };
   private registrationFormData: object = {
-    name: ''
+    login: '',
+    password: ''
   };
 
   private newColumn: object = {
@@ -47,8 +49,12 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  private onSubmit() {
-    // console.log(this.registrationFormData);
+  private logIn() {
+    console.log(this.loginFormData);
+  }
+
+  private register() {
+    console.log(this.registrationFormData);
   }
 
 

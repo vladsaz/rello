@@ -15,9 +15,8 @@ export class TaskComponent implements OnInit {
   ngOnInit() {
   }
 
- private updateTaskName() {
-  this.task.name = this.inputVal;
-  console.log(this.task.name);
-}
+  private updateTaskName() {
+    console.log(this.task);
+  }
 
 }

@@ -40,8 +40,7 @@ export class ColumnComponent implements OnInit {
  }
 
  private updateColumnName() {
-   this.column.name = this.inputVal;
-   console.log(this.column.name);
- }
+  console.log(this.column);
+}
 
 }

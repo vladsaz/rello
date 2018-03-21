@@ -2,7 +2,7 @@
               [dndModel]="column.tasks" style="padding: 0px">
   <div class="column justify-content-around">
     <div class="column-title row justify-content-around">
-      <input [(ngModel)]="inputVal" type="text" placeholder="{{column.name}}" (focusout)="updateColumnName()">
+        <input [(ngModel)]="column.name" type="text" (focusout)="updateColumnName()">
     </div>
     <div>
       <div class="row" *ngFor="let task of column.tasks; let i = index" 
