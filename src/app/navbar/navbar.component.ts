@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../authorization.service';
+import { ColumnsService } from '../columns.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -18,13 +19,26 @@ export class NavbarComponent implements OnInit {
     name: ''
   };
 
-  constructor(private auth: AuthorizationService, private modalService: NgbModal) { }
+  private newColumn: object = {
+    'id': 10,
+    'name': 'column_0',
+    'tasks': [
+      {
+        'name': 'task10'
+      },
+      {
+        'name': 'task11'
+      }
+    ]
+};
+
+  constructor(private auth: AuthorizationService, private modalService: NgbModal, private columnsService: ColumnsService) { }
 
   ngOnInit() {
     this.isRegistered = this.auth.isRegistered;
   }
 
-  open(content) {
+  private open(content) {
     console.log(this.isRegistered);
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -33,7 +47,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  private onSubmit() {
     // console.log(this.registrationFormData);
   }
 
@@ -46,6 +60,10 @@ export class NavbarComponent implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  private addColumn() {
+    this.columnsService.columnsList.columns.push(this.newColumn);
   }
 
 }

@@ -34,7 +34,10 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  info($event) {
-    console.log($event);
+  removeMovedItem(index, data) {
+    data.columns.splice(index, 1);
+    console.log('*');
+    // this.data.columns[index] = {'name': 'deleted'};
+    console.log(this.data);
   }
 }

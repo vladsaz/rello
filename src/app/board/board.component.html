@@ -7,11 +7,14 @@
   </div>
 </div> -->
 
-<div class="d-flex flex-row container-fluid column-container" dnd-sortable-container [sortableData]="this.data.columns" (click)="info($event)">
+<div class="d-flex flex-row container-fluid column-container" [dndList] [dndModel]="this.data.columns">
     <div class="row">
       <hr>
     </div>
-    <div class="" *ngFor="let column of this.data.columns; let i = index" dnd-sortable [sortableIndex]="i" >
+    <div  *ngFor="let column of this.data.columns; let i = index" 
+                [dndDraggable]="{draggable:true, effectAllowed:'move'}"
+                [dndObject]="column"
+                (dndMoved)="removeMovedItem(i, this.data)">
       <app-column [column]="column"></app-column>
     </div>
   </div>

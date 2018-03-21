@@ -1,24 +1,17 @@
-<!-- <div class="d-flex flex-row container" [dragula]='"bag-one"' [dragulaModel]='column.tasks'>
+<div class="d-flex flex-row container" [dndList]
+              [dndModel]="column.tasks" style="padding: 0px">
   <div class="column justify-content-around">
     <div class="column-title row justify-content-around">
-      <p>{{column.name}}</p>
+      <p >{{column.name}}</p>
     </div>
     <div>
-      <div class="row" *ngFor="let task of column.tasks">
+      <div class="row" *ngFor="let task of column.tasks; let i = index" 
+                [dndDraggable]
+                [dndObject]="task"
+                (dndMoved)="removeMovedItem(i, column)">
         <app-task [task]="task"></app-task>
       </div>
-    </div>
-  </div>
-</div> -->
-<div class="d-flex flex-row container" dnd-sortable-container [sortableData]="column.tasks">
-  <div class="column justify-content-around">
-    <div class="column-title row justify-content-around">
-      <p>{{column.name}}</p>
-    </div>
-    <div>
-      <div class="row" *ngFor="let task of column.tasks; let i = index" dnd-sortable [sortableIndex]="i" (onDropSuccess)="onMove($event, i)">
-        <app-task [task]="task"></app-task>
-      </div>
+      <button class="btn btn-sm btn-outline-secondary" (click)="addTask()">Add task</button>
     </div>
   </div>
 </div>

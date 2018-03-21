@@ -6,6 +6,7 @@ import { ColumnsService } from './columns.service';
 import { AuthorizationService } from './authorization.service';
 import { FormsModule } from '@angular/forms';
 import { DndModule } from 'ng2-dnd';
+import { DndListModule } from 'ngx-drag-and-drop-lists';
 
 import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
@@ -27,7 +28,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpClientModule,
     NgbModule.forRoot(),
     FormsModule,
-    DndModule.forRoot()
+    DndModule.forRoot(),
+    DndListModule
   ],
   providers: [ColumnsService, AuthorizationService],
   bootstrap: [AppComponent]

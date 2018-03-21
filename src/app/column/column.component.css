@@ -1,7 +1,6 @@
 .column {
     min-height: 200px;
-    min-width: 200px;
-    margin: 10px;
+    min-width: 100px;
     padding: 10px;
     border: 1px solid #3aa;
     /* width: calc(100%); */
