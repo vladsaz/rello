@@ -25,7 +25,7 @@ export class ColumnComponent implements OnInit {
 
   private onMove($event, position: number) {
     console.log($event);
-    console.log(number);
+    // console.log(number);
  }
 
   private removeMovedItem(index, column) {
