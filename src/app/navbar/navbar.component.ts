@@ -55,6 +55,7 @@ export class NavbarComponent implements OnInit {
 
   private register() {
     console.log(this.registrationFormData);
+    this.auth.registerUser(this.registrationFormData);
   }
 
 
