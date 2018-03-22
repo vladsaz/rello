@@ -8,7 +8,8 @@ import { ColumnsService } from '../columns.service';
 })
 
 export class ColumnComponent implements OnInit {
-@Input() column: Object;
+@Input() column: any;
+@Input() options: any;
 
   private inputVal: string;
   private itemsDropped: Array<any> = [];
@@ -33,6 +34,11 @@ export class ColumnComponent implements OnInit {
     column.tasks.splice(index, 1);
     // column.tasks[index] = {'name': 'deleted'};
     console.log('*');
+ }
+
+ private scream() {
+  console.log('SCREAM');
+  this.options.draggable.enables = false;
  }
 
  private addTask() {

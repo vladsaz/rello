@@ -1,14 +1,37 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
+import { Http, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class ColumnsService {
 
-  public columnsList: object = {};
+  public columnsList: any = {};
 
-  constructor() {
-   }
+  constructor(private http: HttpClient) {
+  }
 
-  getData () {
+  public sendData () {
+    // const myHeaders = new Headers();
+    // myHeaders.append('Content-Type', 'application/json');
+    // myHeaders.append('Access-Control-Allow-Origin', '*');
+    // const options = new RequestOptions({headers: myHeaders, body: JSON.stringify(this.columnsList)});
+    const headers = new HttpHeaders()
+              .set('Content-Type', 'application/json')
+              .set('Access-Control-Allow-Origin', '*');
+    this.http.post('http://localhost:3005/mongo',
+    JSON.stringify(this.columnsList), {headers: headers})
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log('Error occured');
+          console.log(err);
+        }
+      );
+  }
+
+  public getData () {
     this.columnsList = {
       'columns': [
         {

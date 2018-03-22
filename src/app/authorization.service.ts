@@ -16,7 +16,7 @@ export class AuthorizationService {
     const options = new RequestOptions({headers: headers});
 
     return this.http.post('http://localhost:3005/register',
-    JSON.stringify(userData), options)
+    JSON.stringify(userData))
       .subscribe(
         res => {
           console.log(res);

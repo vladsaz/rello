@@ -9,7 +9,7 @@
                 [dndDraggable]
                 [dndObject]="task"
                 (dndMoved)="removeMovedItem(i, column)">
-        <app-task [task]="task"></app-task>
+        <app-task (mouseover)="scream()" [task]="task"></app-task>
       </div>
       <button class="btn btn-sm btn-outline-secondary" (click)="addTask()">Add task</button>
     </div>

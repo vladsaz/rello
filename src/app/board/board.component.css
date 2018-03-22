@@ -7,4 +7,12 @@
 .column-container {
     overflow: scroll;
     min-height: 90vh;
+    height: 400px;
+}
+
+.toggle-drop{
+    width: 200px;
+    height: 20px;
+    color: lightblue;
+    cursor: move;
 }

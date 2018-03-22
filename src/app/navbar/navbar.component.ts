@@ -73,4 +73,8 @@ export class NavbarComponent implements OnInit {
     this.columnsService.columnsList.columns.push(this.newColumn);
   }
 
+  private syncData() {
+    this.columnsService.sendData();
+  }
+
 }
