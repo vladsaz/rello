@@ -20,15 +20,8 @@ export class BoardComponent implements OnInit {
   };
   private newColumn: object = {
     'id': 10,
-    name: 'column_0',
-    tasks: [
-      {
-        name: 'task10'
-      },
-      {
-        name: 'task11'
-      }
-    ]
+    name: 'New Column',
+    tasks: []
 };
   options: GridsterConfig;
   dashboard: any;
@@ -59,20 +52,16 @@ export class BoardComponent implements OnInit {
   }
 
   private scream() {
-    console.log('SCREAM');
     this.options.draggable.enabled = true;
     this.options.api.optionsChanged();
    }
 
    private screamBack() {
-    console.log('SCREAM');
     this.options.draggable.enabled = false;
     this.options.api.optionsChanged();
-    console.log(this.dashboard);
    }
 
    private syncData() {
-    console.log(this.dashboard);
     this.columnsService.sendData(this.dashboard);
    }
 
@@ -112,20 +101,25 @@ export class BoardComponent implements OnInit {
     this.dashboard.splice(this.dashboard.indexOf(item), 1);
   }
 
-  addItem() {
-    this.dashboard.push({});
-  }
-
   private addColumn() {
+    const newNumberOfColumns = this.dashboard.length + 1;
+    this.dashboard.forEach(element => {
+      element.rows = newNumberOfColumns;
+    });
+    this.dashboard.push(
+      {cols: 1, rows: newNumberOfColumns, y: 0, x: newNumberOfColumns - 1, column: JSON.parse(JSON.stringify(this.newColumn))}
+    );
+    this.changedOptions();
+    /*this.dashboard = [];
     this.data = this.columnsService.initColumns();
     const numberOfColumns = this.data['columns'].length;
-    this.dashboard.push({cols: 1, rows: numberOfColumns, y: 0, x: 0, column: this.newColumn});
+
+    this.data['columns'].forEach(element => {
+      this.dashboard.push({cols: 1, rows: numberOfColumns, y: 0, x: 0, column: element});
+    });*/
   }
 
   removeMovedItem(index, data) {
     data.columns.splice(index, 1);
-    console.log('*');
-    // this.data.columns[index] = {'name': 'deleted'};
-    console.log(this.data);
   }
 }

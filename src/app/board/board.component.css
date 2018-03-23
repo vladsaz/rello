@@ -16,3 +16,7 @@
     color: lightblue;
     cursor: move;
 }
+
+.background {
+    background-color:  #3aa !important;
+}

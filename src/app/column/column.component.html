@@ -2,7 +2,7 @@
               [dndModel]="column.tasks" style="padding: 0px">
   <div class="column justify-content-around">
     <div class="column-title row justify-content-around">
-        <input [(ngModel)]="column.name" type="text" (focusout)="updateColumnName()">
+        <input class="column-name" [(ngModel)]="column.name" type="text" (focusout)="updateColumnName()">
     </div>
     <div>
       <div class="row" *ngFor="let task of column.tasks; let i = index" 
@@ -11,7 +11,7 @@
                 (dndMoved)="removeMovedItem(i, column)">
         <app-task (mouseover)="scream()" [task]="task"></app-task>
       </div>
-      <button class="btn btn-sm btn-outline-secondary" (click)="addTask()">Add task</button>
+      <button class="btn btn-sm btn-outline-secondary btn-add" (click)="addTask()">Add task...</button>
     </div>
   </div>
 </div>

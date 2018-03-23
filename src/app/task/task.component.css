@@ -1,3 +1,5 @@
 .movable {
     cursor: move;
+    height: 70px;
+    vertical-align: text-bottom;
 }

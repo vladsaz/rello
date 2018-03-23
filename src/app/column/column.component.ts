@@ -32,12 +32,9 @@ export class ColumnComponent implements OnInit {
 
   private removeMovedItem(index, column) {
     column.tasks.splice(index, 1);
-    // column.tasks[index] = {'name': 'deleted'};
-    console.log('*');
  }
 
  private scream() {
-  console.log('SCREAM');
   this.options.draggable.enables = false;
  }
 

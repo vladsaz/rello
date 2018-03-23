@@ -2,8 +2,6 @@
     min-height: 200px;
     width: 200px;
     padding: 20px;
-    border: 1px solid #3aa;
-    /* width: calc(100%); */
 }
 
 .container {
@@ -12,4 +10,17 @@
 
 .highlight{
 	border:solid 1px #0d0;
+}
+
+.column-name{
+    font-weight: bold;
+    border: none;
+}
+.column-name:focus{
+    border: 1px solid green;
+}
+
+.btn-add{
+    margin-top: 10px;
+    border: none;
 }

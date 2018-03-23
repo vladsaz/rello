@@ -21,8 +21,6 @@ export class NavbarComponent implements OnInit {
     password: ''
   };
 
- 
-
   constructor(private auth: AuthorizationService, private modalService: NgbModal, private columnsService: ColumnsService) { }
 
   ngOnInit() {

@@ -1,25 +1,13 @@
-<!-- <div class="container">
-  <div class="row">
-    <hr>
-  </div>
-  <div class="d-flex flex-row" *ngFor="let column of this.data.columns" [dragula]='"bag-two"' [dragulaModel]='data.columns'>
-    <app-column [column]="column"></app-column>
-  </div>
-</div> -->
-
 <div class="column-container" >
     <button class="btn btn-sm btn-outline-secondary" (click)="syncData()" type="button">Sync board</button>
     <button class="btn btn-sm btn-outline-secondary" (click)="addColumn()">Add column</button>
-    <gridster [options]="options">
+<p></p>
+    <gridster style="background-color:#3aa;"[options]="options">
         <gridster-item [item]="item" *ngFor="let item of dashboard">
             <div class="toggle-drop " (mouseover)="scream()"  (mouseout)="screamBack()">hold to move</div>
             <app-column [column]="item.column"  [options]="options"></app-column>
         </gridster-item>
       </gridster>
-    <!-- <div  *ngFor="let column of this.data.columns; let i = index" 
-               >
-      <app-column [column]="column"></app-column>
-    </div> -->
   </div>
 
 <p *ngIf="this.dataLoaded">
