@@ -1,5 +1,5 @@
 <div class="column-container" >
-    <button class="btn btn-sm btn-outline-secondary" (click)="syncData()" type="button">Sync board</button>
+    <button class="btn btn-sm btn-outline-secondary" (click)="syncData()" type="button" [disabled]="!this.auth.isLogged">Send board to db</button>
     <button class="btn btn-sm btn-outline-secondary" (click)="addColumn()">Add column</button>
 <p></p>
     <gridster style="background-color:#3aa;"[options]="options">

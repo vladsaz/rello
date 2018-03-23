@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Http, RequestOptions } from '@angular/http';
+import { AuthorizationService } from './authorization.service';
 
 @Injectable()
 export class ColumnsService {
@@ -8,7 +9,7 @@ export class ColumnsService {
   public columnsList: any = {};
   public board: any = {};
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private auth: AuthorizationService) {
   }
 
   public sendData (board) {
@@ -16,11 +17,11 @@ export class ColumnsService {
     const headers = new HttpHeaders()
               .set('Content-Type', 'application/json')
               .set('Access-Control-Allow-Origin', '*');
+              board.token = this.auth.token;
     this.http.post('http://localhost:3005/mongo',
     JSON.stringify(board), {headers: headers})
       .subscribe(
         res => {
-          console.log(res);
         },
         err => {
           console.log('Error occured');
@@ -32,7 +33,8 @@ export class ColumnsService {
   public getData () {
     const headers = new HttpHeaders()
               .set('Content-Type', 'application/json')
-              .set('Access-Control-Allow-Origin', '*');
+              .set('Access-Control-Allow-Origin', '*')
+              .set('x-access-token', this.auth.token);
     this.http.get('http://localhost:3005/mongo', {headers: headers})
       .subscribe(
         res => {

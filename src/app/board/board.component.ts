@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ColumnsService } from '../columns.service';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
+import { AuthorizationService } from '../authorization.service';
 
 @Component({
   selector: 'app-board',
@@ -26,7 +27,7 @@ export class BoardComponent implements OnInit {
   options: GridsterConfig;
   dashboard: any;
 
-  constructor(private http: HttpClient, private columnsService: ColumnsService) {
+  constructor(private http: HttpClient, private columnsService: ColumnsService, private auth: AuthorizationService) {
     const headers = new HttpHeaders()
               .set('Content-Type', 'application/json')
               .set('Access-Control-Allow-Origin', '*');
@@ -34,7 +35,6 @@ export class BoardComponent implements OnInit {
               .subscribe(
                 res => {
                   this.dashboard = res[0]['board'];
-                  console.log(this.dashboard);
                 },
                 err => {
                   console.log('Error occured');
@@ -73,24 +73,6 @@ export class BoardComponent implements OnInit {
         enabled: false
       }
     };
-
-    // this.dashboard = [];
-
-    // this.data = this.columnsService.initColumns();
-    // const numberOfColumns = this.data['columns'].length;
-
-    // this.data['columns'].forEach(element => {
-    //   this.dashboard.push({cols: 1, rows: numberOfColumns, y: 0, x: 0, column: element});
-    // });
-    // console.log(this.data);
-    // return this.http.get('http://localhost:3002/')
-    // .toPromise()
-    // .then(data => {
-    //     this.userData = data;
-    //     console.log(this.userData);
-    //     this.dataLoaded = true;
-    //     return data;
-    // });
   }
 
   changedOptions() {
@@ -102,6 +84,7 @@ export class BoardComponent implements OnInit {
   }
 
   private addColumn() {
+    this.dashboard = this.dashboard || [];
     const newNumberOfColumns = this.dashboard.length + 1;
     this.dashboard.forEach(element => {
       element.rows = newNumberOfColumns;
@@ -110,13 +93,6 @@ export class BoardComponent implements OnInit {
       {cols: 1, rows: newNumberOfColumns, y: 0, x: newNumberOfColumns - 1, column: JSON.parse(JSON.stringify(this.newColumn))}
     );
     this.changedOptions();
-    /*this.dashboard = [];
-    this.data = this.columnsService.initColumns();
-    const numberOfColumns = this.data['columns'].length;
-
-    this.data['columns'].forEach(element => {
-      this.dashboard.push({cols: 1, rows: numberOfColumns, y: 0, x: 0, column: element});
-    });*/
   }
 
   removeMovedItem(index, data) {

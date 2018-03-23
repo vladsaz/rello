@@ -16,7 +16,6 @@ export class TaskComponent implements OnInit {
   }
 
   private updateTaskName() {
-    console.log(this.task);
   }
 
 }

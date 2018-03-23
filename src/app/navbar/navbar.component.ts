@@ -10,6 +10,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NavbarComponent implements OnInit {
 
+  private wantsToRegister = false;
+  private wantsToLogin = false;
   private closeResult: string;
   private isRegistered;
   private loginFormData: object = {
@@ -24,11 +26,23 @@ export class NavbarComponent implements OnInit {
   constructor(private auth: AuthorizationService, private modalService: NgbModal, private columnsService: ColumnsService) { }
 
   ngOnInit() {
-    this.isRegistered = this.auth.isRegistered;
   }
 
-  private open(content) {
-    console.log(this.isRegistered);
+  private openLogin(content) {
+    this.wantsToLogin = true;
+    this.wantsToRegister = false;
+    this.isRegistered = this.auth.isRegistered;
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private openRegister(content) {
+    this.wantsToRegister = true;
+    this.wantsToLogin = false;
+    this.isRegistered = this.auth.isRegistered;
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -37,12 +51,11 @@ export class NavbarComponent implements OnInit {
   }
 
   private logIn() {
-    console.log(this.loginFormData);
+    this.auth.logIn(this.loginFormData);
   }
 
   private register() {
-    console.log(this.registrationFormData);
-    this.auth.registerUser(this.registrationFormData);
+    this.auth.registerUser(this.loginFormData);
   }
 
 
