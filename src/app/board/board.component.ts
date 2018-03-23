@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ColumnsService } from '../columns.service';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
@@ -18,18 +18,44 @@ export class BoardComponent implements OnInit {
   public sampleData: object = {
     '1': 'true'
   };
+  private newColumn: object = {
+    'id': 10,
+    name: 'column_0',
+    tasks: [
+      {
+        name: 'task10'
+      },
+      {
+        name: 'task11'
+      }
+    ]
+};
   options: GridsterConfig;
-  dashboard: Array<GridsterItem>;
+  dashboard: any;
 
   constructor(private http: HttpClient, private columnsService: ColumnsService) {
+    const headers = new HttpHeaders()
+              .set('Content-Type', 'application/json')
+              .set('Access-Control-Allow-Origin', '*');
+              this.http.get('http://localhost:3005/mongo', {headers: headers})
+              .subscribe(
+                res => {
+                  this.dashboard = res[0]['board'];
+                  console.log(this.dashboard);
+                },
+                err => {
+                  console.log('Error occured');
+                  console.log(err);
+                }
+              );
   }
 
   static itemChange(item, itemComponent) {
-    
+
   }
 
   static itemResize(item, itemComponent) {
-    
+
   }
 
   private scream() {
@@ -45,8 +71,12 @@ export class BoardComponent implements OnInit {
     console.log(this.dashboard);
    }
 
+   private syncData() {
+    console.log(this.dashboard);
+    this.columnsService.sendData(this.dashboard);
+   }
+
   ngOnInit() {
-    this.dashboard = [];
     this.options = {
       itemChangeCallback: BoardComponent.itemChange,
       itemResizeCallback: BoardComponent.itemResize,
@@ -54,22 +84,24 @@ export class BoardComponent implements OnInit {
         enabled: false
       }
     };
-    
-    this.data = this.columnsService.getData();
-    let numberOfColumns = this.data['columns'].length;
 
-    this.data['columns'].forEach(element => {
-      this.dashboard.push({cols: 1, rows: numberOfColumns, y: 0, x: 0, column: element})
-    });
-    console.log(this.data);
-    return this.http.get('http://localhost:3002/')
-    .toPromise()
-    .then(data => {
-        this.userData = data;
-        console.log(this.userData);
-        this.dataLoaded = true;
-        return data;
-    });
+    // this.dashboard = [];
+
+    // this.data = this.columnsService.initColumns();
+    // const numberOfColumns = this.data['columns'].length;
+
+    // this.data['columns'].forEach(element => {
+    //   this.dashboard.push({cols: 1, rows: numberOfColumns, y: 0, x: 0, column: element});
+    // });
+    // console.log(this.data);
+    // return this.http.get('http://localhost:3002/')
+    // .toPromise()
+    // .then(data => {
+    //     this.userData = data;
+    //     console.log(this.userData);
+    //     this.dataLoaded = true;
+    //     return data;
+    // });
   }
 
   changedOptions() {
@@ -82,6 +114,12 @@ export class BoardComponent implements OnInit {
 
   addItem() {
     this.dashboard.push({});
+  }
+
+  private addColumn() {
+    this.data = this.columnsService.initColumns();
+    const numberOfColumns = this.data['columns'].length;
+    this.dashboard.push({cols: 1, rows: numberOfColumns, y: 0, x: 0, column: this.newColumn});
   }
 
   removeMovedItem(index, data) {

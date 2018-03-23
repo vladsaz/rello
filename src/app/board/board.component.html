@@ -8,6 +8,8 @@
 </div> -->
 
 <div class="column-container" >
+    <button class="btn btn-sm btn-outline-secondary" (click)="syncData()" type="button">Sync board</button>
+    <button class="btn btn-sm btn-outline-secondary" (click)="addColumn()">Add column</button>
     <gridster [options]="options">
         <gridster-item [item]="item" *ngFor="let item of dashboard">
             <div class="toggle-drop " (mouseover)="scream()"  (mouseout)="screamBack()">hold to move</div>

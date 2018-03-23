@@ -6,20 +6,18 @@ import { Http, RequestOptions } from '@angular/http';
 export class ColumnsService {
 
   public columnsList: any = {};
+  public board: any = {};
 
   constructor(private http: HttpClient) {
   }
 
-  public sendData () {
-    // const myHeaders = new Headers();
-    // myHeaders.append('Content-Type', 'application/json');
-    // myHeaders.append('Access-Control-Allow-Origin', '*');
-    // const options = new RequestOptions({headers: myHeaders, body: JSON.stringify(this.columnsList)});
+  public sendData (board) {
+    board = {board: board};
     const headers = new HttpHeaders()
               .set('Content-Type', 'application/json')
               .set('Access-Control-Allow-Origin', '*');
     this.http.post('http://localhost:3005/mongo',
-    JSON.stringify(this.columnsList), {headers: headers})
+    JSON.stringify(board), {headers: headers})
       .subscribe(
         res => {
           console.log(res);
@@ -32,85 +30,49 @@ export class ColumnsService {
   }
 
   public getData () {
-    this.columnsList = {
+    const headers = new HttpHeaders()
+              .set('Content-Type', 'application/json')
+              .set('Access-Control-Allow-Origin', '*');
+    this.http.get('http://localhost:3005/mongo', {headers: headers})
+      .subscribe(
+        res => {
+          this.board = res;
+        },
+        err => {
+          console.log('Error occured');
+          console.log(err);
+        }
+      );
+    return this.columnsList;
+  }
+
+
+  public initColumns () {
+    return {
       'columns': [
         {
-            'id': 0,
-            'name': 'column_0',
-            'tasks': [
-              {
-                'name': 'task1'
-              },
-              {
-                'name': 'task2'
-              }
-            ]
-        },
-        {
-            'id': 1,
-            'name': 'column_1',
-            'tasks': [
-              {
-                'name': 'task3'
-              },
-              {
-                'name': 'task4'
-              }
-            ]
-        },
-        {
-          'id': 2,
-          'name': 'column_2',
-          'tasks': [
-            {
-              'name': 'task5'
-            },
-            {
-              'name': 'task6'
-            }
+          name: 'col1',
+          tasks: [
+            {name: 'task1'},
+            {name: 'task2'}
           ]
         },
         {
-          'id': 3,
-          'name': 'column_3',
-          'tasks': [
-            {
-              'name': 'task7'
-            },
-            {
-              'name': 'task8'
-            }
+          name: 'col2',
+          tasks: [
+            {name: 'task3'},
+            {name: 'task4'}
           ]
-       },
-       {
-        'id': 4,
-        'name': 'column_4',
-        'tasks': [
-          {
-            'name': 'task9'
-          },
-          {
-            'name': 'task10'
-          }
-        ]
-     }
-     ,
-       {
-        'id': 5,
-        'name': 'column_5',
-        'tasks': [
-          {
-            'name': 'task11'
-          },
-          {
-            'name': 'task12'
-          }
-        ]
-     }
+        },
+        {
+          name: 'col3',
+          tasks: [
+            {name: 'task5'},
+            {name: 'task6'}
+          ]
+        }
       ]
     };
-
-    return this.columnsList;
   }
 
 }

@@ -21,18 +21,7 @@ export class NavbarComponent implements OnInit {
     password: ''
   };
 
-  private newColumn: object = {
-    'id': 10,
-    'name': 'column_0',
-    'tasks': [
-      {
-        'name': 'task10'
-      },
-      {
-        'name': 'task11'
-      }
-    ]
-};
+ 
 
   constructor(private auth: AuthorizationService, private modalService: NgbModal, private columnsService: ColumnsService) { }
 
@@ -69,12 +58,5 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  private addColumn() {
-    this.columnsService.columnsList.columns.push(this.newColumn);
-  }
-
-  private syncData() {
-    this.columnsService.sendData();
-  }
 
 }
